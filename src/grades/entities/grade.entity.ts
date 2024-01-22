@@ -10,7 +10,7 @@ import {
 
 @Entity({ name: 'grades' })
 export class Grade {
-  @PrimaryGeneratedColumn({ name: 'id_grade' })
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
   @Column({ name: 'value' })
