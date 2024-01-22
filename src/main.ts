@@ -4,6 +4,8 @@ import { AppModule } from './app/app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
+const port = process.env.PORT || 3000;
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -21,6 +23,6 @@ async function bootstrap() {
 
   app.setGlobalPrefix('highschool-api');
 
-  await app.listen(3000, '0.0.0.0');
+  await app.listen(port, "0.0.0.0");
 }
 bootstrap();
