@@ -21,6 +21,8 @@ export class ClassroomsService {
   async create(createClassroomDto: CreateClassroomDto) {
     const { year, group, idProfessor } = createClassroomDto;
 
+    console.log(year, group);
+
     const professor =
       idProfessor != null
         ? await this.profesorService.findOne(idProfessor)
