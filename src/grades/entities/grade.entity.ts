@@ -16,12 +16,12 @@ export class Grade {
   @Column({ name: 'value' })
   value: number;
 
-  @Column({
-    name: 'notation_date',
-    type: 'datetime',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
-  notationDate: Date;
+  // @Column({
+  //   name: 'notation_date',
+  //   type: 'datetime',
+  //   default: () => 'CURRENT_TIMESTAMP',
+  // })
+  // notationDate: Date;
 
   @ManyToOne(() => Student, (student) => student.grades, {
     onDelete: 'CASCADE',
