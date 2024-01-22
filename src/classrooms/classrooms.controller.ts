@@ -12,8 +12,10 @@ import { ClassroomsService } from './classrooms.service';
 import { CreateClassroomDto } from './dto/create-classroom.dto';
 import { UpdateClassroomDto } from './dto/update-classroom.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(JwtAuthGuard)
+@ApiTags('Classrooms')
 @Controller('classrooms')
 export class ClassroomsController {
   constructor(private readonly classroomsService: ClassroomsService) {}
@@ -44,10 +46,5 @@ export class ClassroomsController {
     @Body() updateClassroomDto: UpdateClassroomDto,
   ) {
     return this.classroomsService.update(+id, updateClassroomDto);
-  }
-
-  @Get('/:id/students')
-  getStudents(@Param('id') id: string) {
-    return this.classroomsService.getStudents(+id);
   }
 }
