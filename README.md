@@ -24,7 +24,21 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Documentatie REST API: https://highschool-api-production.up.railway.app/api
+
+In baza de date am 6 entitati (classroom, professors, subjects, students, grades, user)
+
+Classroom - are un an si o grupa(ex: 12 A), poate avea un professor ca si class master(diriginte), si mai multi students
+Subject - are un nume, si profesorii care o predau
+Professor - are un nume, prenume, poate avea clasa la care este diriginte, si materiile(subjects) pe care le preda
+Student - are un nume, prenume, data nasterii, clasa la care invata, bursa, si note
+Grades - nota propriu-zisa, studentul si materia
+
+User - email si password(criptata in baza de date)
+
+Autentificare si face cu un JWT cu ajutorul unei chei secrete
+
+Requesturile catre API se pot face numai daca avem acest JWT verificat
 
 ## Installation
 
