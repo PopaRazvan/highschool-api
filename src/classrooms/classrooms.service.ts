@@ -1,4 +1,10 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+  forwardRef,
+} from '@nestjs/common';
 import { CreateClassroomDto } from './dto/create-classroom.dto';
 import { UpdateClassroomDto } from './dto/update-classroom.dto';
 import { Classroom } from './entities/classroom.entity';
@@ -21,19 +27,21 @@ export class ClassroomsService {
   async create(createClassroomDto: CreateClassroomDto) {
     const { year, group, idProfessor } = createClassroomDto;
 
-    console.log(year, group);
+    try {
+      const professor =
+        idProfessor != null
+          ? await this.profesorService.findOne(idProfessor)
+          : null;
 
-    const professor =
-      idProfessor != null
-        ? await this.profesorService.findOne(idProfessor)
-        : null;
-
-    const newClassroom = this.classroomRepository.create({
-      year,
-      group,
-      masterClass: professor,
-    });
-    return this.classroomRepository.save(newClassroom);
+      const newClassroom = this.classroomRepository.create({
+        year,
+        group,
+        masterClass: professor,
+      });
+      return this.classroomRepository.save(newClassroom);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   findAll() {
